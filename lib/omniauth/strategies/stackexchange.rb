@@ -37,11 +37,7 @@ module OmniAuth
 
       def raw_info
         @raw_info ||= access_token.get('me', :params => params).parsed['items'].first
-
-        unless @raw_info
-          fail!("not_registered", NotRegisteredForStackExchangeSiteError.new("User is not registered for requested StackExchange site (#{site})"))
-        end
-
+        @raw_info = {} unless @raw_info
         @raw_info
       end
 
